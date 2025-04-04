@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"go-practice/utils"
+)
 
 func main() {
-	fmt.Println("Hello World")
+	utils.SayHello("Gopher")
+	Fuji(1, 2)
 }
