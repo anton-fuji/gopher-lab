@@ -2,28 +2,24 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func main() {
-	var n int
-	fmt.Scan(&n)
+	var a, b int
+	var op string
+	fmt.Scan(&a, &op, &b)
 
-	minNum := math.MaxInt64
-	maxNum := math.MinInt64
-	sum := 0
-
-	for i := 0; i < n; i++ {
-		var a int
-		fmt.Scan(&a)
-
-		if a > maxNum {
-			maxNum = a
-		}
-		if a < minNum {
-			minNum = a
-		}
-		sum += a
+	if op == "?" {
+		fmt.Println("変なの入れるな!")
 	}
-	fmt.Printf("Max: %d Min: %d Sum: %d", maxNum, minNum, sum)
+	switch {
+	case op == "+":
+		fmt.Println(a + b)
+	case op == "-":
+		fmt.Println(a - b)
+	case op == "*":
+		fmt.Println(a * b)
+	case op == "/":
+		fmt.Println(a / b)
+	}
 }
