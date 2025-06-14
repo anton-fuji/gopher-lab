@@ -1,16 +1,19 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-)
+import "fmt"
+
+import "time"
 
 func main() {
-	var s string
-	sc := bufio.NewReader(os.Stdin)
-	fmt.Fscan(sc, &s)
+	ch := make(chan int) // 容量 0
+	go func() {          // goroutine 1
+		ch <- 100
+	}()
 
-	fmt.Println(s)
+	go func() { // goroutine 2
+		v := <-ch
+		fmt.Println(v)
+	}()
 
+	time.Sleep(2 * time.Second)
 }
