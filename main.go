@@ -2,35 +2,24 @@ package main
 
 import (
 	"fmt"
-	"math/big"
 )
 
-func fibo(n int) []*big.Int {
-	switch n {
-	case 0:
-		return []*big.Int{}
-	case 1:
-		return []*big.Int{big.NewInt(0)}
-	}
+func uniques[T comparable](s []T) []T {
+	count := map[T]struct{}{}
+	result := []T{}
 
-	if n < 0 {
-		return nil
+	for _, v := range s {
+		if _, ok := count[v]; !ok {
+			count[v] = struct{}{}
+			result = append(result, v)
+		}
 	}
-
-	fibos := make([]*big.Int, n)
-	fibos[0] = big.NewInt(0)
-	fibos[1] = big.NewInt(1)
-	for i := 2; i < n; i++ {
-		fibos[i] = new(big.Int).Add(fibos[i-2], fibos[i-1])
-	}
-	return fibos
+	return result
 }
-
 func main() {
-	var n int
-	fmt.Scan(&n)
+	s := []string{"apple", "banana", "oarange", "apple", "peach"}
+	i := []int{1, 2, 4, 2, 4, 6, 2, 8, 3}
 
-	for i, v := range fibo(n) {
-		fmt.Printf("fibo[%d] = %s\n", i, v)
-	}
+	fmt.Println(uniques(s))
+	fmt.Println(uniques(i))
 }
